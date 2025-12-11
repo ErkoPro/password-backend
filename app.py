@@ -61,3 +61,21 @@ def home():
 if __name__ == "__main__":
 
     app.run(host="0.0.0.0", port=10000)
+    from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Password Security API is running"
+
+@app.route("/check", methods=["POST"])
+def check_password():
+    data = request.get_json()
+    password = data.get("password", "")
+    # Простая логика: длина пароля
+    strength = "Слабый" if len(password) < 8 else "Сильный"
+    return jsonify({"strength": strength})
+
+if __name__ == "__main__":
+    app.run(debug=True)
