@@ -58,5 +58,6 @@ def check_password():
 def home():
     return "Password Security API is running"
 
-if name == "__main__":
+if __name__ == "__main__":
+
     app.run(host="0.0.0.0", port=10000)
